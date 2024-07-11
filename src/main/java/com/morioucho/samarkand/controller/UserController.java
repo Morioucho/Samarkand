@@ -1,5 +1,6 @@
 package com.morioucho.samarkand.controller;
 
+import com.morioucho.samarkand.dto.UserRegistrationDTO;
 import com.morioucho.samarkand.model.User;
 import com.morioucho.samarkand.service.UserService;
 
@@ -32,6 +33,7 @@ public class UserController {
      * If the credentials are correct, the server responds with the user details.
      * If the credentials are incorrect, the server responds with an error message (401).
      */
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user){
         User foundUser = userService.findByUsername(user.getUsername());
@@ -41,5 +43,31 @@ public class UserController {
         }
 
         return ResponseEntity.status(401).body("Invalid username or password.");
+    }
+
+    /**
+     * @param userDTO - A user DTO that passes information related to creating a new user.
+     * @return Returns the user if the request is passed and error code "400" if the username is already taken.
+     * @author Galagyy
+     *
+     * Endpoint: "/api/users/register"
+     * Method: "POST"
+     * Content-Type: "application/json"
+     * Request Content: "username" and "password"
+     *
+     * This endpoint allows users to create a new account with a username and password.
+     * If the username already exists, the system returns an error with status 400.
+     * If the username doesn't exist, the system creates a new user and passes it back.
+     */
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody UserRegistrationDTO userDTO){
+        if(userService.findByUsername(userDTO.getUsername()) != null){
+            return ResponseEntity.status(400).body("This username is already taken.");
+        }
+
+        User newUser = userService.registerUser(userDTO);
+
+        return ResponseEntity.ok(newUser);
     }
 }
