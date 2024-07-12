@@ -14,3 +14,21 @@ Samarkand will also have a Job Listings page where both Employers and Employees 
 Samarkand will allow for community members to create posts to communicate with each other. Samarkand will only allow people within the community to participate in these posts; no outsiders.
 
 In summary, Samarkand is a Swiss Knife-esque website that allows for better community integration.
+
+# How to Run
+In order to run Samarkand, you'll need some sort of server hosting such as **Python's server hosting app** or an alternative. You'll also need to use **Gradle** in order to run our Java backend.
+
+To start a Python server, you can use the following syntax:
+```
+// Navigate to the "web" folder first.
+// You can use any port.
+python -m http.server 8000
+```
+
+To start the Gradle project:
+```
+./gradlew build
+./gradlew bootRun
+```
+
+Once you do both of these, you can view the website at `http://localhost:8080`.

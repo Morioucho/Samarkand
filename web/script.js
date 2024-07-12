@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('registerPassword').value;
 
         try {
-            const response = await registerUser(username, password);
+            await registerUser(username, password);
             registerMessage.textContent = 'Registration successful';
         } catch (error) {
             registerMessage.textContent = 'Registration failed';
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('loginPassword').value;
 
         try {
-            const response = await loginUser(username, password);
+            await loginUser(username, password);
             loginMessage.textContent = 'Login successful';
         } catch (error) {
             loginMessage.textContent = 'Login failed';
