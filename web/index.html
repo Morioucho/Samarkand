@@ -1,62 +1,62 @@
-<html lang="en_US">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
 
-<title> Samarkand </title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+    <title>Registration and Login</title>
+
+    <!-- Style.css and App.js are both files that we need, style.css is the style (shocker) and app.js is the backend javascript.-->
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+
 <body>
-    <header class="site-header" role="banner">
-        <div class="wrapper"><a class="site-title" rel="author" href="/">Samarkand</a>
-            <nav class="site-nav">
-                <input type="checkbox" id="nav-trigger" class="nav-trigger">
-                <label for="nav-trigger">
-                    <span class="menu-icon">
-                        <svg viewBox="0 0 18 15" width="18px" height="15px">
-                            <path
-                                d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
-                            </path>
-                        </svg>
-                    </span>
-                </label>
-            </nav>
-        </div>
-    </header>
+    <div class="container">
+        <div class="form-container">
+            <!-- This is the form container for the Register Field.-->
+            <h2>Register</h2>
 
-    <main class="page-content" aria-label="Content">
-        <div class="wrapper">
-            <article class="post h-entry" itemscope="" itemtype="http://schema.org/BlogPosting">
-                <header class="post-header">
-                    <h1 class="post-title p-name" itemprop="name headline">What is Samarkand?</h1>
-                    <p class="post-meta"><time class="dt-published" datetime="2020-07-31T06:33:13+00:00"
-                            itemprop="datePublished">
-                            July 10th, 2024
-                        </time></p>
-                </header>
+            <!-- There are form IDs so that the Javascript can identify it. -->
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerUsername">Username:</label>
 
-                <div class="post-content e-content" itemprop="articleBody">
-                    <p>Samarkand is a webapp intended to serve local communities. Samarkand's name is inspired from the similar named city, a major trading hub and marketplace during the prime of the Silk Road. Samarkand led to the spread and diffusion of various cultures and items throughout the world. Likewise, the Samarkand website intends to connect communities and local businesses together.
-                    </p>
-                    <p>Samarkand intends to create a variety of features that would benefit the community, these examples are:</p>
-                    <ul>
-                        <li>Direct Business Interaction</li>
-                        <li>Food Marketplace</li>
-                        <li>Business Marketplace</li>
-                        <li>Job Listings</li>
-                        <li>Community Posts</li>
-                    </ul>
-
-                    <p>With the introduction of these features, Samarkand would be a great option for both growing communities and developed communities. Samarkand also integrates the usage of <b> AI </b> in order to foster connections such as connecting potential job hunters with employers and connecting local businesses with local consumers. With these features and AI capabilities, Samarkand is bound to be the next 
-                    </p>
-
-                    <p><img src="https://steamuserimages-a.akamaihd.net/ugc/155773601374553602/54ED87AA4DCAF71B5BA7EC8AB58F0F3B488C755B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"
-                        alt="Konosuba Dance GIF"></p>
-
+                    <!-- Our input also has an ID. -->
+                    <input type="text" id="registerUsername" required>
                 </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password:</label>
+
+                    <!-- Our input also has an ID. -->
+                    <input type="password" id="registerPassword" required>
+                </div>
+
+                <!-- This is the submit button so that we submit the data.-->
+                <button type="submit">Register</button>
+                <p id="registerMessage"></p>
+            </form>
+
         </div>
-        </code></pre>
-    </main>
+
+        <div class="form-container">
+            <!-- This is the form container for the login field, the comments are roughly the same as the one above.-->
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">Username:</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit">Login</button>
+                <p id="loginMessage"></p>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
