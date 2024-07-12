@@ -1,62 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samarkand Login</title>
 
-    <title>Registration and Login</title>
-
-    <!-- Style.css and App.js are both files that we need, style.css is the style (shocker) and app.js is the backend javascript.-->
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    <script defer src="app.js"></script>
 </head>
-
 <body>
     <div class="container">
         <div class="form-container">
-            <!-- This is the form container for the Register Field.-->
-            <h2>Register</h2>
+            <div id="formToggle">
+                <button id="showLogin">Login</button>
+                <button id="showRegister">Register</button>
+            </div>
 
-            <!-- There are form IDs so that the Javascript can identify it. -->
-            <form id="registerForm">
-                <div class="form-group">
-                    <label for="registerUsername">Username:</label>
+            <div id="loginFormContainer">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">Username:</label>
+                        <input type="text" id="loginUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit">Login</button>
+                    <p id="loginMessage"></p>
+                </form>
+            </div>
 
-                    <!-- Our input also has an ID. -->
-                    <input type="text" id="registerUsername" required>
-                </div>
-                <div class="form-group">
-                    <label for="registerPassword">Password:</label>
+            <div id="registerFormContainer" style="display: none;">
+                <h2>Register</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">Username:</label>
+                        <input type="text" id="registerUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password:</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <button type="submit">Register</button>
 
-                    <!-- Our input also has an ID. -->
-                    <input type="password" id="registerPassword" required>
-                </div>
-
-                <!-- This is the submit button so that we submit the data.-->
-                <button type="submit">Register</button>
-                <p id="registerMessage"></p>
-            </form>
-
-        </div>
-
-        <div class="form-container">
-            <!-- This is the form container for the login field, the comments are roughly the same as the one above.-->
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginUsername">Username:</label>
-                    <input type="text" id="loginUsername" required>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password:</label>
-                    <input type="password" id="loginPassword" required>
-                </div>
-                <button type="submit">Login</button>
-                <p id="loginMessage"></p>
-            </form>
+                    <p id="registerMessage"></p>
+                </form>
+            </div>
         </div>
     </div>
 </body>
-
 </html>
