@@ -19,16 +19,19 @@ In summary, Samarkand is a Swiss Knife-esque website that allows for better comm
 In order to run Samarkand, you'll need some sort of server hosting such as **Python's server hosting app** or an alternative. You'll also need to use **Gradle** in order to run our Java backend.
 
 To start a Python server, you can use the following syntax:
-```
+```python
 // Navigate to the "web" folder first.
 // You can use any port.
+
 python -m http.server 8000
 ```
 
 To start the Gradle project:
-```
+```bash
+// Make sure you're in the folder with "gradlew".
+
 ./gradlew build
 ./gradlew bootRun
 ```
 
-Once you do both of these, you can view the website at `http://localhost:8080`.
+Once you do both of these, you can view the website at `http://localhost:8000`.
