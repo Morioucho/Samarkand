@@ -1,0 +1,10 @@
+[INFO] Logged in with user: 1DSBdXVQjhPEE1ox-s72FAORrNx6B6II
+[ERROR] Password & Username Same: U:"GogetaBlue" P:"GogetaBlue"
+[ERROR] Password & Username Same: U:"GogetaBlue" P:"Janemba"
+[INFO] Logged in with user: qyKEVm7RATJz1p135VIhyTrnn6o-lAxV
+[ERROR] Password & Username same OR password length less than 8 chars
+: U:"GogetaBlue"
+P:"GogetaBlue"
+[ERROR] Password & Username same OR password length less than 8 chars
+: U:"GogetaBlue"
+P:"Janemba"
