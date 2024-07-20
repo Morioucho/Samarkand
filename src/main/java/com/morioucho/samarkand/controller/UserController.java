@@ -5,6 +5,7 @@ import com.morioucho.samarkand.model.Session;
 import com.morioucho.samarkand.model.User;
 import com.morioucho.samarkand.service.UserService;
 
+import com.morioucho.samarkand.util.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
@@ -43,7 +44,8 @@ public class UserController {
             Session newSession = Session.generateToken();
             foundUser.setSession(newSession);
 
-            System.out.println("Logged in with user: " + newSession.getToken());
+            Logger.log("INFO", "Logged in with user: " + newSession.getToken());
+
             return ResponseEntity.ok(newSession.getToken());
         }
 
@@ -67,11 +69,18 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserRegistrationDTO userDTO){
-        if(usernameExists(userDTO.getUsername())){
+        String username = userDTO.getUsername();
+        String password = userDTO.getPassword();
+
+        if(usernameExists(username)){
+            Logger.log("ERROR", "Username \"" + username + "\" already exists.");
+
             return ResponseEntity.status(400).body("The username you chose has already been taken.");
         }
 
-        if(!passwordCheck(userDTO.getUsername(), userDTO.getPassword())){
+        if(!passwordCheck(username, password)){
+            Logger.log("ERROR", "Password & Username same OR password length less than 8 chars\nU:\"" + username + "\"\nP:\"" + userDTO.getPassword() + "\"");
+
             return ResponseEntity.status(400).body("Your password cannot be your username and must be greater than 8 characters in length.");
         }
 
