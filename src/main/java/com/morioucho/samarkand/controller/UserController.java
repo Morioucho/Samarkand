@@ -43,6 +43,7 @@ public class UserController {
             Session newSession = Session.generateToken();
             foundUser.setSession(newSession);
 
+            System.out.println("Logged in with user: " + newSession.getToken());
             return ResponseEntity.ok(newSession.getToken());
         }
 
