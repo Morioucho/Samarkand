@@ -2,6 +2,9 @@ package com.morioucho.samarkand.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "app_user")
 public class User {
@@ -10,6 +13,7 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private Session session;
 
     public User(String username, String password){
         this.username = username;
@@ -40,5 +44,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
     }
 }

@@ -1,6 +1,7 @@
 package com.morioucho.samarkand.controller;
 
 import com.morioucho.samarkand.dto.UserRegistrationDTO;
+import com.morioucho.samarkand.model.Session;
 import com.morioucho.samarkand.model.User;
 import com.morioucho.samarkand.service.UserService;
 
@@ -39,7 +40,10 @@ public class UserController {
         User foundUser = userService.findByUsername(user.getUsername());
 
         if(foundUser != null && foundUser.getUsername().equals(user.getUsername()) && foundUser.getPassword().equals(user.getPassword())){
-            return ResponseEntity.ok(user);
+            Session newSession = Session.generateToken();
+            foundUser.setSession(newSession);
+
+            return ResponseEntity.ok(newSession.getToken());
         }
 
         return ResponseEntity.status(401).body("Invalid username or password.");
@@ -62,12 +66,30 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserRegistrationDTO userDTO){
-        if(userService.findByUsername(userDTO.getUsername()) != null){
-            return ResponseEntity.status(400).body("This username is already taken.");
+        if(usernameExists(userDTO.getUsername())){
+            return ResponseEntity.status(400).body("The username you chose has already been taken.");
+        }
+
+        if(!passwordCheck(userDTO.getUsername(), userDTO.getPassword())){
+            return ResponseEntity.status(400).body("Your password cannot be your username and must be greater than 8 characters in length.");
         }
 
         User newUser = userService.registerUser(userDTO);
 
         return ResponseEntity.ok(newUser);
+    }
+
+    private boolean passwordCheck(String username, String password){
+        boolean accepted = password.length() >= 8;
+
+        if(password.contains(username)){
+            accepted = false;
+        }
+
+        return accepted;
+    }
+
+    private boolean usernameExists(String username){
+        return userService.findByUsername(username) != null;
     }
 }
