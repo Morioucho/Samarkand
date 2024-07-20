@@ -1,7 +1,12 @@
 package com.morioucho.samarkand.controller;
 
 import com.morioucho.samarkand.model.Post;
+import com.morioucho.samarkand.model.Session;
+import com.morioucho.samarkand.model.User;
+import com.morioucho.samarkand.repository.UserRepository;
 import com.morioucho.samarkand.service.PostService;
+
+import com.morioucho.samarkand.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +21,9 @@ public class PostController {
     private PostService postService;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     public List<Post> getAllPosts(){
         return postService.getAllPosts();
     }
@@ -28,8 +36,17 @@ public class PostController {
     }
 
     @PostMapping
-    public Post createPost(@RequestParam Long userID, @RequestBody Post post){
-        return postService.createPost(userID, post);
+    public Post createPost(@RequestParam String token, @RequestBody Post post){
+        Session supposedSession = new Session();
+        supposedSession.setToken(token);
+
+        User user = userRepository.findBySession(supposedSession);
+
+        if(user == null){
+            return null;
+        }
+
+        return postService.createPost(user.getId(), post);
     }
 
     @PutMapping("/{id}")
